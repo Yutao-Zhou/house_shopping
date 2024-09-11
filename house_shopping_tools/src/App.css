@@ -4,6 +4,10 @@
   font-family: Arial, sans-serif;
 }
 
+.highlight-principal {
+  background-color: #dff0d8; /* Light green background for highlighting */
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -53,3 +57,4 @@ th, td {
 h2, h3 {
   color: #333;
 }
+
