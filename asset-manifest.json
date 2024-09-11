@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/house_shopping/static/css/main.0e5d43c5.css",
+    "main.js": "/house_shopping/static/js/main.35bef934.js",
+    "static/js/453.44979ff1.chunk.js": "/house_shopping/static/js/453.44979ff1.chunk.js",
+    "index.html": "/house_shopping/index.html",
+    "main.0e5d43c5.css.map": "/house_shopping/static/css/main.0e5d43c5.css.map",
+    "main.35bef934.js.map": "/house_shopping/static/js/main.35bef934.js.map",
+    "453.44979ff1.chunk.js.map": "/house_shopping/static/js/453.44979ff1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0e5d43c5.css",
+    "static/js/main.35bef934.js"
+  ]
+}
