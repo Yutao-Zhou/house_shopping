@@ -195,5 +195,11 @@ export const translations: Record<string, string> = {
   "保存方案": "Save plan",
   "复制下方链接即可分享。链接包含此方案的所有计算参数。": "Copy the link below to share. It contains all the inputs for this plan.",
   "方案分享链接": "Plan sharing link",
-  "完成": "Done"
+  "完成": "Done",
+  "了解{0}": "About {0}",
+  "年利率是借款的年度利息比例。此处使用固定名义年利率，按年利率除以 12 计算月利率；不要填写包含部分贷款费用的 APR。6.5% 只是示例，不是实时报价。": "The annual interest rate is the cost of borrowing, expressed as a yearly percentage. Enter your fixed nominal rate, not the APR that also includes certain loan fees. Monthly interest uses this rate divided by 12. The 6.5% default is an example, not a live quote.",
+  "HOA（Homeowners Association）是房主协会收取的社区管理费，通常用于公共区域维护和设施。请填写每月金额；没有此费用填 0。": "HOA stands for Homeowners Association. These dues generally cover shared community upkeep and amenities. Enter the monthly amount, or 0 if it does not apply.",
+  "PMI（Private Mortgage Insurance）是私人房贷保险，主要保障贷款机构，并非为房屋提供保险。请按贷款方报价填写月费；不需要时填 0。此工具按固定月费估算，不会自动模拟取消。": "PMI means Private Mortgage Insurance. It protects the lender if you cannot repay your loan, rather than insuring your home. Enter the monthly amount from your lender, or 0 if not required. This calculator treats it as a fixed fee and does not model automatic cancellation.",
+  "本息月供只包含偿还贷款本金和支付利息。开启后，每月住房支出还会计入房产税、房屋保险、HOA 和 PMI；按年填写的房产税与保险会除以 12。": "Principal and interest is only the loan payment. Turn this on to also include property tax, home insurance, HOA dues and PMI in the housing estimate. Annual tax and insurance amounts are divided by 12.",
+  "贷款本金是实际借入的金额，不包含利息。按房价与首付计算时，本金等于房价减去首付；直接输入贷款时，采用你填写的贷款金额。": "Loan principal is the amount you borrow, before interest. With price and down payment, it equals the home price minus your down payment. In loan-amount mode, it is the amount you enter."
 };
