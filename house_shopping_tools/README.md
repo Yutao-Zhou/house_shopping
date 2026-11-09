@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Nestwise · 栖算
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A bilingual fixed-rate mortgage planner, published at **https://yutaozhou.com/house_shopping/**.
 
-## Available Scripts
+The app lives in [`house_shopping_tools`](./house_shopping_tools). English is the default language; the language switch remembers your preference in this browser.
 
-In the project directory, you can run:
+## Develop
 
-### `npm start`
+Requires Node.js 22.13 or newer.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```sh
+cd house_shopping_tools
+npm ci
+npm run dev
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Open the printed local URL at `/house_shopping/`.
 
-### `npm test`
+## Validate and publish
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+cd house_shopping_tools
+npm test
+npm run build
+npm run deploy
+```
 
-### `npm run build`
+`npm run deploy` builds the app and publishes the static `build/` folder to the existing `gh-pages` branch. A GitHub login with write access to this repository is required. GitHub Pages continues to publish from `gh-pages` at `/`, using the account's existing custom domain. The Vite base path is `/house_shopping/`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Home price and down payment, or a direct loan amount
+- Fixed-rate principal and interest, optional tax, insurance, HOA and PMI estimates
+- Extra monthly principal payments and estimated interest savings
+- Balance and annual payment mix charts
+- Up to three locally saved plans for comparison
+- Yearly and monthly amortization schedules and CSV export
+- English / 中文 throughout, including dates, help and CSV headers
+- Responsive layout with an always-visible estimate on mobile
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Data and assumptions
 
-### `npm run eject`
+This is a static website. The calculator has no application server, account, database or third-party analytics. Inputs and saved plans stay in localStorage in the current browser. Sharing places calculation inputs after the `#` in the URL; anyone holding the link can inspect and restore them.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The model uses a fixed nominal annual interest rate with monthly payments. Tax, insurance, HOA and PMI inputs remain fixed; automatic PMI cancellation is not modeled. Extra payments start with the first payment and reduce principal, with the last payment capped at the outstanding balance plus interest. Daily interest, prepayment penalties, adjustable rates, tax deductions and refinancing are not modeled. Example inputs are not market quotes; actual terms depend on lender documents.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The previous calculator remains available in Git history.

@@ -1,44 +1,35 @@
 {
-  "name": "house_shopping_tools",
-  "version": "0.1.0",
+  "name": "nestwise-mortgage",
+  "version": "1.0.0",
   "private": true,
-  "homepage": "https://yutao-zhou.github.io/house_shopping/",
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
+  "type": "module",
+  "homepage": "https://yutaozhou.com/house_shopping/",
+  "engines": {
+    "node": ">=22.13.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "vite --host 127.0.0.1",
+    "start": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/mortgage.test.mjs",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build --nojekyll"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "lucide-react": "1.31.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
   },
   "devDependencies": {
-    "gh-pages": "^6.1.1"
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "gh-pages": "^6.1.1",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vite": "8.3.6"
   }
 }
