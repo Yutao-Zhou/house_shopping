@@ -33,6 +33,7 @@ npm run deploy
 - Fixed-rate principal and interest, optional tax, insurance, HOA and PMI estimates
 - Extra monthly principal payments and estimated interest savings
 - Balance and annual payment mix charts
+- Recast simulation with lump-sum timing, a cash-paid fee, three repayment paths, a balance chart and CSV export
 - Up to three locally saved plans for comparison
 - Yearly and monthly amortization schedules and CSV export
 - English / 中文 throughout, including dates, help and CSV headers

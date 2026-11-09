@@ -1,8 +1,12 @@
 export type PaymentRow = { month: number; payment: number; principal: number; interest: number; extra: number; balance: number; totalInterest: number };
 export function monthlyPayment(principal: number, annualRate: number, years: number): number {
   if (![principal, annualRate, years].every(Number.isFinite) || principal < 0 || annualRate < 0 || years <= 0 || !Number.isInteger(years * 12)) throw new Error('Invalid mortgage inputs');
+  return paymentForMonths(principal, annualRate, years * 12);
+}
+export function paymentForMonths(principal: number, annualRate: number, months: number): number {
+  if (![principal, annualRate, months].every(Number.isFinite) || principal < 0 || annualRate < 0 || !Number.isInteger(months) || months <= 0) throw new Error('Invalid mortgage inputs');
   if (!principal) return 0;
-  const rate = annualRate / 1200, months = years * 12;
+  const rate = annualRate / 1200;
   return rate === 0 ? principal / months : principal * rate / -Math.expm1(-months * Math.log1p(rate));
 }
 export function amortize({ principal, annualRate, years, extra }: { principal: number; annualRate: number; years: number; extra: number }) {

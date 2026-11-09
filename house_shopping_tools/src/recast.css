@@ -1,0 +1,121 @@
+.recast-page { margin-bottom: 36px; }
+.recast-loan-strip { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 24px; margin-bottom: 22px; }
+.recast-loan-strip>div { display: flex; flex-direction: column; gap: 10px; }
+.recast-loan-strip>div>span { font-size: 11px; color: #7d8c70; }
+.recast-loan-strip strong { font-size: 16px; font-weight: 550; font-variant-numeric: tabular-nums; }
+.recast-loan-strip i { font-style: normal; color: #a7b399; margin: 0 9px; }
+.recast-grid { display: grid; grid-template-columns: 310px minmax(0,1fr); gap: 23px; align-items: start; }
+.recast-controls { padding: 23px; }
+.recast-controls .card-title { margin-bottom: 18px; }
+.recast-controls .card-title h2 { display: flex; align-items: center; gap: 9px; }
+.recast-presets { margin-top: -6px; }
+.recast-timing { display: flex; align-items: flex-start; gap: 6px; font-size: 10px; color: #8b9b7d; line-height: 1.8; margin: 15px 0 24px; }
+.recast-timing svg { margin-top: 2px; }
+.recast-balance { margin: -5px 0 20px; gap: 8px; }
+.recast-balance strong { white-space: nowrap; font-size: 11px; }
+.recast-control-actions { padding-top: 6px; border-top: 1px solid #edf0e7; }
+.recast-control-actions .outline-btn { width: 100%; margin-top: 16px; }
+.recast-outcome { min-width: 0; }
+.recast-summary { padding: 25px 27px 0; background: #264c3c; color: #f6faef; border-radius: 14px; overflow: hidden; }
+.recast-overline { font-size: 12px; color: #d9e9cf; }
+.recast-payment { display: block; font-size: 45px; line-height: 1.6; margin: 7px 0 0; font-weight: 400; letter-spacing: -1.6px; font-variant-numeric: tabular-nums; }
+.recast-payment small { font-size: 12px; color: #b7cdaa; margin-left: 10px; letter-spacing: 0; }
+.recast-summary>p { font-size: 11px; color: #b7cdaa; line-height: 1.9; }
+.recast-summary-details { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; padding: 21px 0; margin-top: 22px; border-top: 1px solid #ffffff17; }
+.recast-summary-details>div { display: flex; flex-direction: column; gap: 9px; }
+.recast-summary-details span { font-size: 10px; color: #9ebc91; }
+.recast-summary-details strong { font-size: 14px; font-weight: 450; }
+.recast-summary-footer { margin: 0 -27px; padding: 13px 27px; font-size: 10px; background: #1d412f66; color: #b9d1ad; }
+.recast-metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin-top: 16px; }
+.recast-metrics>.card { padding: 18px 15px; display: flex; flex-direction: column; gap: 12px; }
+.recast-metrics span { font-size: 10px; line-height: 1.7; color: #7a8b6c; }
+.recast-metrics strong { font-size: 21px; font-weight: 550; letter-spacing: -.4px; font-variant-numeric: tabular-nums; }
+.recast-metrics small { font-size: 9px; line-height: 1.8; color: #8b9b7d; }
+.recast-metric-label { display: flex; align-items: center; gap: 3px; }
+.recast-metrics .cost-increase { color: #a06a37; }
+.recast-context-note { margin-top: 15px; padding: 12px 14px; border: 1px solid #e0e7d5; background: #edf2e3; color: #768766; font-size: 11px; line-height: 1.9; border-radius: 8px; }
+.recast-section-heading { margin: 32px 0 18px; }
+.recast-section-heading h2 { font-size: 16px; }
+.recast-section-heading p { font-size: 11px; color: #7f8f73; line-height: 1.8; margin-top: 9px; }
+.recast-options { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.recast-option { padding: 23px; min-width: 0; }
+.recast-option h3 { font-size: 15px; font-weight: 600; }
+.recast-option>p { font-size: 11px; color: #879678; line-height: 1.85; margin: 11px 0 22px; min-height: 41px; }
+.recast-option-label { font-size: 10px; color: #92a081; }
+.recast-option-price { display: block; font-size: 29px; font-weight: 450; letter-spacing: -.9px; margin: 10px 0 22px; white-space: nowrap; }
+.recast-option-price small { font-size: 10px; color: #8a9a79; letter-spacing: 0; margin-left: 6px; }
+.recast-option dl { margin: 0; padding-top: 19px; border-top: 1px solid #e8eddf; display: flex; flex-direction: column; gap: 16px; }
+.recast-option dl>div { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; font-size: 11px; line-height: 1.65; }
+.recast-option dt { color: #829372; }
+.recast-option dd { text-align: right; font-weight: 500; margin: 0; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.recast-selected { border-color: #a8c28a; background: #f6faef; box-shadow: inset 0 3px #bcd89c; }
+.recast-fine-print { font-size: 10px; color: #8b9a7c; line-height: 1.9; margin: 17px 0 23px; }
+.recast-chart { margin-bottom: 23px; padding-bottom: 13px; }
+.recast-chart .balance-chart { max-height: 340px; }
+.recast-chart .chart-key { flex-wrap: wrap; gap: 8px 20px; }
+.recast-table-actions { display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+.recast-table { margin-bottom: 23px; }
+.recast-table td,.recast-table th { padding-left: 10px; padding-right: 10px; }
+.recast-table .recast-event-row { background: #eff6e3; }
+.recast-event-row th { font-weight: 650; }
+.recast-methods { padding: 24px; }
+.recast-methods p { font-size: 11px; line-height: 1.95; color: #7c8c6e; margin-top: 13px; }
+.recast-methods a { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; color: #607f49; margin-top: 16px; }
+.recast-entry { display: flex; align-items: center; justify-content: space-between; padding: 17px 23px; margin-top: 16px; gap: 20px; }
+.recast-entry>span { color: #819171; font-size: 12px; }
+@media(max-width:1050px) {
+  .recast-grid { grid-template-columns: 285px minmax(0,1fr); gap: 18px; }
+  .recast-controls { padding: 20px; }
+  .recast-option { padding: 20px 17px; }
+  .recast-option-price { font-size: 25px; }
+  .recast-metrics strong { font-size: 17px; }
+  .recast-metrics>.card { padding: 15px 12px; }
+  .recast-table>.section-top { align-items: flex-start; flex-direction: column; }
+}
+@media(max-width:850px) {
+  .recast-grid { grid-template-columns: 260px minmax(0,1fr); }
+  .recast-loan-strip { flex-wrap: wrap; gap: 20px; }
+  .recast-payment { font-size: 38px; }
+  .recast-summary { padding: 23px 22px 0; }
+  .recast-summary-footer { margin: 0 -22px; padding-left: 22px; }
+  .recast-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .recast-metrics>.card:last-child { grid-column: 1/-1; }
+  .recast-options { gap: 12px; }
+  .recast-option-price { font-size: 21px; }
+  .recast-option dl>div { flex-direction: column; gap: 5px; }
+  .recast-option dd { text-align: left; }
+}
+@media(max-width:620px) {
+  .header-inner nav { gap: 6px; }
+  .recast-grid { display: block; }
+  .recast-controls { padding: 22px; margin-bottom: 20px; }
+  .recast-loan-strip { padding: 20px; gap: 23px; }
+  .recast-loan-strip>div:first-child { width: 100%; }
+  .recast-loan-strip strong { font-size: 14px; }
+  .recast-loan-strip>div>span { font-size: 10px; }
+  .recast-loan-strip i { margin: 0 4px; }
+  .recast-presets button { font-size: 10px; }
+  .recast-presets { margin-top: -2px; }
+  .recast-payment { font-size: 39px; }
+  .recast-summary { scroll-margin-top: 16px; }
+  .recast-summary-details { gap: 12px; }
+  .recast-summary-details span { font-size: 9px; line-height: 1.7; }
+  .recast-summary-details strong { font-size: 13px; }
+  .recast-metrics strong { font-size: 20px; }
+  .recast-metrics>.card { padding: 18px 15px; }
+  .recast-metrics small { font-size: 10px; }
+  .recast-options { grid-template-columns: 1fr; gap: 15px; }
+  .recast-option { padding: 23px; }
+  .recast-option>p { min-height: 0; }
+  .recast-option-price { font-size: 31px; }
+  .recast-option dl>div { flex-direction: row; gap: 12px; font-size: 11px; }
+  .recast-option dd { text-align: right; }
+  .recast-table-actions { width: 100%; gap: 14px; flex-wrap: wrap; }
+  .recast-table-actions .text-action { font-size: 10px; }
+  .recast-table-actions .outline-btn { font-size: 10px; }
+  .recast-methods { padding: 21px; }
+  .recast-entry { padding: 17px; gap: 15px; }
+  .recast-entry>span { font-size: 11px; line-height: 1.8; }
+  .recast-entry .text-action { font-size: 10px; flex-shrink: 0; }
+  .recast-mobile-result strong { font-size: 23px; }
+}
