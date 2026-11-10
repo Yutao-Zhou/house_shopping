@@ -21,13 +21,13 @@ function RecastChart({ data, loan, after }: { data: RecastResult; loan: Loan; af
   const y = (balance: number) => bottom - balance / loan.principal * (bottom - top);
   const path = (plan: RecastPlan) => `M${left},${top} ` + plan.rows.map(row => `${row.lumpSum ? `L${x(row.month)},${y(row.balance + row.lumpSum)} ` : ''}L${x(row.month)},${y(row.balance)}`).join(' ');
   return <section className="chart-card card recast-chart"><div className="section-top"><div><h2>{t('三种方案的贷款余额')}</h2><p>{t('竖线表示大额还本时间。')}</p></div></div>
-    <div className="chart-key"><span><i className="dot gray" />{t('维持当前计划')}</span><span><i className="dot" style={{ background: '#89a65b' }} />{t('只大额还本')}</span><span><i className="dot forest" />{t('还本并 Recast')}</span></div>
+    <div className="chart-key"><span><i className="dot gray" />{t('维持当前计划')}</span><span><i className="dot" style={{ background: 'var(--chart-secondary)' }} />{t('只大额还本')}</span><span><i className="dot forest" />{t('还本并 Recast')}</span></div>
     <svg className="balance-chart" viewBox="0 0 720 245" role="img" aria-label={t('三种方案的贷款余额')}>
-      {[0, .25, .5, .75, 1].map(p => <g key={p}><line x1={left} x2={right} y1={top + p * (bottom - top)} y2={top + p * (bottom - top)} stroke="#e8ece7" strokeDasharray="3 5" /><text x={left - 12} y={top + p * (bottom - top) + 4} textAnchor="end" className="axis">{compact(loan.principal * (1 - p))}</text></g>)}
-      <line x1={x(after)} x2={x(after)} y1={top} y2={bottom} stroke="#a5b393" strokeDasharray="3 4" />
-      <path d={path(data.baseline)} fill="none" stroke="#b6c3b8" strokeWidth="2" strokeDasharray="5 5" />
-      <path d={path(data.lumpOnly)} fill="none" stroke="#89a65b" strokeWidth="2.5" />
-      <path d={path(data.recast)} fill="none" stroke="#245642" strokeWidth="3" />
+      {[0, .25, .5, .75, 1].map(p => <g key={p}><line x1={left} x2={right} y1={top + p * (bottom - top)} y2={top + p * (bottom - top)} stroke="var(--chart-grid)" strokeDasharray="3 5" /><text x={left - 12} y={top + p * (bottom - top) + 4} textAnchor="end" className="axis">{compact(loan.principal * (1 - p))}</text></g>)}
+      <line x1={x(after)} x2={x(after)} y1={top} y2={bottom} stroke="var(--chart-event)" strokeDasharray="3 4" />
+      <path d={path(data.baseline)} fill="none" stroke="var(--chart-comparison)" strokeWidth="2" strokeDasharray="5 5" />
+      <path d={path(data.lumpOnly)} fill="none" stroke="var(--chart-secondary)" strokeWidth="2.5" />
+      <path d={path(data.recast)} fill="none" stroke="var(--chart-main)" strokeWidth="3" />
       {[0, .2, .4, .6, .8, 1].map(p => <text key={p} x={x(p * term)} y="235" textAnchor="middle" className="axis">{+(p * loan.years).toFixed(1)} {t('年')}</text>)}
     </svg>
   </section>;

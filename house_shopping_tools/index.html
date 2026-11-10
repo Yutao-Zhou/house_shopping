@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#254e3c" />
+    <script>
+      (() => {
+        let saved;
+        try { saved = localStorage.getItem('nestwise-theme-v1'); } catch { /* Storage is optional. */ }
+        const theme = saved === 'light' || saved === 'dark' ? saved : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#111c17' : '#254e3c');
+      })();
+    </script>
     <meta name="description" content="Plan your fixed-rate mortgage, compare homebuying scenarios, explore extra payments and export a full amortization schedule." />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <title>Nestwise · A clearer path to your next home</title>

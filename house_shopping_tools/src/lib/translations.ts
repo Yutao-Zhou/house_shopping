@@ -3,6 +3,8 @@ import { refinanceTranslations } from './refinance-copy.ts';
 export const translations: Record<string, string> = {
   ...recastTranslations,
   ...refinanceTranslations,
+  '切换到浅色模式': 'Switch to light mode',
+  '切换到深色模式': 'Switch to dark mode',
   "请填写完整的有效数字。": "Please complete all fields with valid numbers.",
   "房价需大于 0，首付比例需在 0–100% 之间；贷款上限为 $100,000,000。": "Enter a positive home price and a down payment between 0–100%. The maximum loan is $100,000,000.",
   "年利率需在 0–30% 之间。": "The annual interest rate must be between 0–30%.",

@@ -36,6 +36,7 @@ npm run deploy
 - Up to three locally saved plans for comparison
 - Yearly and monthly amortization schedules and CSV export
 - English / 中文 throughout, including dates, help and CSV headers
+- Light/dark mode with a bilingual header toggle, system preference on first visit, and a locally remembered manual choice
 - Responsive layout with an always-visible estimate on mobile
 
 ## Data and assumptions

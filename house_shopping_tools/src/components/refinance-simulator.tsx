@@ -32,9 +32,9 @@ function RefinanceChart({ data }: { data: RefinanceResult }) {
   return <section className="chart-card card recast-chart"><div className="section-top"><div><h2>{t('再融资后的贷款余额')}</h2><p>{t('横轴从再融资时点起算；融资费用会使新贷款的起始余额增加。')}</p></div></div>
     <div className="chart-key"><span><i className="dot gray" />{t('保留原贷款')}</span><span><i className="dot forest" />{t('换为新贷款')}</span></div>
     <svg className="balance-chart" viewBox="0 0 720 245" role="img" aria-label={t('再融资后的贷款余额')}>
-      {[0, .25, .5, .75, 1].map(p => <g key={p}><line x1={left} x2={right} y1={top + p * (bottom - top)} y2={top + p * (bottom - top)} stroke="#e8ece7" strokeDasharray="3 5" /><text x={left - 12} y={top + p * (bottom - top) + 4} textAnchor="end" className="axis">{compact(maxBalance * (1 - p))}</text></g>)}
-      <path d={path('currentBalance')} fill="none" stroke="#b6c3b8" strokeWidth="2.5" strokeDasharray="5 5" />
-      <path d={path('newBalance')} fill="none" stroke="#245642" strokeWidth="3" />
+      {[0, .25, .5, .75, 1].map(p => <g key={p}><line x1={left} x2={right} y1={top + p * (bottom - top)} y2={top + p * (bottom - top)} stroke="var(--chart-grid)" strokeDasharray="3 5" /><text x={left - 12} y={top + p * (bottom - top) + 4} textAnchor="end" className="axis">{compact(maxBalance * (1 - p))}</text></g>)}
+      <path d={path('currentBalance')} fill="none" stroke="var(--chart-comparison)" strokeWidth="2.5" strokeDasharray="5 5" />
+      <path d={path('newBalance')} fill="none" stroke="var(--chart-main)" strokeWidth="3" />
       {[0, .2, .4, .6, .8, 1].map(p => <text key={p} x={x(p * months)} y="235" textAnchor="middle" className="axis">{+(p * months / 12).toFixed(1)} {t('年')}</text>)}
     </svg>
   </section>;
