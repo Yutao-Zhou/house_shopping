@@ -4,11 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#254e3c" />
+    <script>
+      (() => {
+        let saved;
+        try { saved = localStorage.getItem('nestwise-theme-v1'); } catch { /* Storage is optional. */ }
+        const theme = saved === 'light' || saved === 'dark' ? saved : matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', theme === 'dark' ? '#111c17' : '#254e3c');
+      })();
+    </script>
     <meta name="description" content="Plan your fixed-rate mortgage, compare homebuying scenarios, explore extra payments and export a full amortization schedule." />
     <link rel="icon" type="image/svg+xml" href="/house_shopping/favicon.svg" />
     <title>Nestwise · A clearer path to your next home</title>
-    <script type="module" crossorigin src="/house_shopping/assets/index-Dw6Bkwn4.js"></script>
-    <link rel="stylesheet" crossorigin href="/house_shopping/assets/index-DqgfLeso.css">
+    <script type="module" crossorigin src="/house_shopping/assets/index-DjefcLhn.js"></script>
+    <link rel="stylesheet" crossorigin href="/house_shopping/assets/index-D0DsSsjX.css">
   </head>
   <body>
     <noscript>Please enable JavaScript to use the mortgage calculator. 请启用 JavaScript 使用房贷计算器。</noscript>
