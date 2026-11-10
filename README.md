@@ -34,6 +34,7 @@ npm run deploy
 - Extra monthly principal payments and estimated interest savings
 - Balance and annual payment mix charts
 - Recast simulation with lump-sum timing, a cash-paid fee, three repayment paths, a balance chart and CSV export
+- Refinance simulation with a new fixed rate and term, cash or financed fees, holding-period net savings, debt-adjusted break-even and comparison CSV
 - Up to three locally saved plans for comparison
 - Yearly and monthly amortization schedules and CSV export
 - English / 中文 throughout, including dates, help and CSV headers
@@ -43,6 +44,6 @@ npm run deploy
 
 This is a static website. The calculator has no application server, account, database or third-party analytics. Inputs and saved plans stay in localStorage in the current browser. Sharing places calculation inputs after the `#` in the URL; anyone holding the link can inspect and restore them.
 
-The model uses a fixed nominal annual interest rate with monthly payments. Tax, insurance, HOA and PMI inputs remain fixed; automatic PMI cancellation is not modeled. Extra payments start with the first payment and reduce principal, with the last payment capped at the outstanding balance plus interest. Daily interest, prepayment penalties, adjustable rates, tax deductions and refinancing are not modeled. Example inputs are not market quotes; actual terms depend on lender documents.
+The model uses a fixed nominal annual interest rate with monthly payments. Tax, insurance, HOA and PMI inputs remain fixed; automatic PMI cancellation is not modeled. Extra payments start with the first payment and reduce principal, with the last payment capped at the outstanding balance plus interest. Daily interest, prepayment penalties, adjustable rates and tax deductions are not modeled. Recast and refinance are independent simulations. Example inputs are not market quotes; actual terms depend on lender documents.
 
 The previous calculator remains available in Git history.

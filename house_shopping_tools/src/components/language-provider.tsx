@@ -15,7 +15,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = language === 'en' ? 'en' : 'zh-CN';
     document.title = language === 'en' ? 'Nestwise · A clearer path to your next home' : '栖算 Nestwise · 让家的每一笔，清晰一点';
     const description = document.querySelector('meta[name="description"]');
-    description?.setAttribute('content', language === 'en' ? 'Plan your fixed-rate mortgage, compare homebuying scenarios, explore extra payments and export a full amortization schedule.' : '清晰易用的美元房贷规划工具：计算本息月供与住房支出、对比购房方案、试算提前还款，并导出完整还款明细。');
+    description?.setAttribute('content', language === 'en' ? 'Plan your fixed-rate mortgage, compare homebuying scenarios, simulate extra payments, recasting and refinancing, and export amortization schedules.' : '清晰易用的美元房贷规划工具：计算本息月供与住房支出、对比购房方案、试算提前还款、Recast 和 Refinance，并导出完整还款明细。');
   }, [language]);
   const t = useMemo(() => createTranslator(language), [language]);
   const context = useMemo(() => ({ language, setLanguage, t }), [language, setLanguage, t]);
