@@ -35,6 +35,7 @@ npm run deploy
 - Balance and annual payment mix charts
 - Recast simulation with lump-sum timing, a cash-paid fee, three repayment paths, a balance chart and CSV export
 - Refinance simulation with a new fixed rate and term, cash or financed fees, holding-period net savings, debt-adjusted break-even and comparison CSV
+- Buy vs Rent simulation comparing equal starting cash and monthly budgets, investment compounding, home equity, sale costs and annual net-worth schedules
 - Up to three locally saved plans for comparison
 - Yearly and monthly amortization schedules and CSV export
 - English / 中文 throughout, including dates, help and CSV headers

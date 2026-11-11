@@ -1,8 +1,10 @@
 import { recastTranslations } from './recast-copy.ts';
 import { refinanceTranslations } from './refinance-copy.ts';
+import { buyRentTranslations } from './buy-rent-copy.ts';
 export const translations: Record<string, string> = {
   ...recastTranslations,
   ...refinanceTranslations,
+  ...buyRentTranslations,
   '切换到浅色模式': 'Switch to light mode',
   '切换到深色模式': 'Switch to dark mode',
   "请填写完整的有效数字。": "Please complete all fields with valid numbers.",

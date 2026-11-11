@@ -1,0 +1,99 @@
+:root { --buy-rent-rent: #9c7447; }
+:root[data-theme=dark] { --buy-rent-rent: #dfbd8d; }
+.header-inner nav { gap: 16px; }
+.buy-rent-grid { display: grid; grid-template-columns: 330px minmax(0,1fr); gap: 24px; align-items: start; margin-bottom: 28px; }
+.buy-rent-results { min-width: 0; scroll-margin-top: 18px; }
+.buy-rent-controls .field-pair { align-items: end; gap: 12px; }
+.buy-rent-controls .field-pair .field-label { align-items: center; min-height: 28px; }
+.buy-rent-input-heading { margin: 26px 0 17px; font-size: 12px; font-weight: 650; color: var(--forest); }
+.buy-rent-advanced { margin-top: 23px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.buy-rent-advanced>summary { list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 10px; cursor: pointer; padding: 19px 0; color: var(--forest); font-size: 12px; font-weight: 550; }
+.buy-rent-advanced>summary::-webkit-details-marker { display: none; }
+.buy-rent-advanced>summary:focus-visible { outline: 2px solid var(--forest); outline-offset: 4px; }
+.buy-rent-advanced[open]>summary>svg { transform: rotate(180deg); }
+.buy-rent-advanced-fields { padding: 7px 0 18px; }
+.buy-rent-note { font-size: 10px; line-height: 1.9; color: var(--secondary-text, #718066); margin: 18px 0; }
+.buy-rent-result-heading { padding: 3px 0 20px; }
+.buy-rent-result-heading>span { font-size: 10px; color: var(--secondary-text, #718066); }
+.buy-rent-result-heading h2 { font-size: 23px; font-weight: 500; margin: 10px 0; }
+.buy-rent-result-heading p { font-size: 11px; color: var(--secondary-text, #718066); }
+.buy-rent-outcomes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.buy-rent-outcome { min-width: 0; padding: 23px 21px; }
+.buy-rent-kicker { font-size: 9px; font-weight: 650; letter-spacing: 1.6px; color: var(--forest); }
+.buy-rent-renter .buy-rent-kicker { color: var(--buy-rent-rent); }
+.buy-rent-outcome h3 { font-size: 13px; font-weight: 550; margin: 14px 0 12px; line-height: 1.7; }
+.buy-rent-net-worth { display: block; font-size: clamp(23px,2.6vw,35px); letter-spacing: -1px; font-weight: 500; font-variant-numeric: tabular-nums; margin: 12px 0 23px; overflow-wrap: anywhere; }
+.buy-rent-outcome dl { display: grid; gap: 15px; border-top: 1px solid var(--line); padding-top: 20px; margin: 0; }
+.buy-rent-outcome dl>div { display: flex; flex-direction: column; gap: 7px; font-size: 10px; line-height: 1.7; }
+.buy-rent-outcome dt { color: var(--secondary-text, #718066); }
+.buy-rent-outcome dd { margin: 0; font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.buy-rent-owner { border-top: 3px solid var(--chart-main); }
+.buy-rent-renter { border-top: 3px solid var(--buy-rent-rent); }
+.buy-rent-lead { padding: 20px 22px; margin: 16px 0 23px; background: #edf3e5; border-color: #d6e2c8; }
+.buy-rent-lead>span { font-size: 10px; color: #637b51; }
+.buy-rent-lead strong { display: block; font-size: 19px; font-weight: 550; line-height: 1.6; margin: 9px 0; color: #365f35; overflow-wrap: anywhere; }
+.buy-rent-lead p { font-size: 10px; line-height: 1.9; color: #708360; }
+.buy-rent-lead.rent-ahead { background: #f6f0e6; border-color: #e6d8c3; }
+.buy-rent-lead.rent-ahead strong { color: #825c30; }
+.buy-rent-lead.rent-ahead>span,.buy-rent-lead.rent-ahead p { color: #846f51; }
+.buy-rent-chart { padding-bottom: 16px; margin-bottom: 22px; }
+.buy-rent-chart .chart-key { flex-wrap: wrap; gap: 10px 18px; }
+.buy-rent-chart .balance-chart { min-height: 190px; }
+.buy-rent-rent-dot { background: var(--buy-rent-rent); }
+.buy-rent-chart-readout { min-height: 35px; display: flex; align-items: center; font-size: 10px; line-height: 1.8; color: var(--secondary-text, #718066); border-top: 1px solid var(--line); padding-top: 13px; }
+.buy-rent-budget { padding: 23px; }
+.buy-rent-budget h2 { display: flex; align-items: center; gap: 5px; line-height: 1.7; }
+.buy-rent-starting-capital { padding: 18px 0; border-bottom: 1px solid var(--line); }
+.buy-rent-starting-capital>span { font-size: 10px; color: var(--secondary-text, #718066); }
+.buy-rent-starting-capital>strong { display: block; font-size: 24px; font-weight: 500; margin: 12px 0 8px; }
+.buy-rent-starting-capital>p { font-size: 10px; color: var(--secondary-text, #718066); line-height: 1.8; }
+.buy-rent-monthly-budget { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 16px; margin-top: 22px; }
+.buy-rent-monthly-budget>div { display: flex; flex-direction: column; gap: 11px; }
+.buy-rent-monthly-budget span { font-size: 10px; color: var(--secondary-text, #718066); line-height: 1.7; }
+.buy-rent-monthly-budget strong { font-size: 17px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.buy-rent-table { margin-bottom: 24px; }
+.buy-rent-methods h2:not(:first-child) { margin-top: 23px; }
+.buy-rent-sources { display: flex; flex-wrap: wrap; gap: 8px 25px; }
+:root[data-theme=dark] .buy-rent-lead { background: #253c29; border-color: #536e46; }
+:root[data-theme=dark] .buy-rent-lead strong { color: #c5e0ac; }
+:root[data-theme=dark] .buy-rent-lead>span,:root[data-theme=dark] .buy-rent-lead p { color: #b7cba8; }
+:root[data-theme=dark] .buy-rent-lead.rent-ahead { background: #352e23; border-color: #756143; }
+:root[data-theme=dark] .buy-rent-lead.rent-ahead strong { color: #ead0a8; }
+:root[data-theme=dark] .buy-rent-lead.rent-ahead>span,:root[data-theme=dark] .buy-rent-lead.rent-ahead p { color: #cfbc9d; }
+@media(max-width:1200px) { .header-guide { display: none; } }
+@media(max-width:1050px) {
+  .site-header { height: auto; }
+  .header-inner { flex-wrap: wrap; padding-top: 15px; gap: 12px; }
+  .header-inner nav { order: 2; width: 100%; height: 44px; justify-content: space-between; gap: 12px; }
+  .header-actions { margin-left: auto; }
+  .buy-rent-grid { grid-template-columns: 300px minmax(0,1fr); gap: 18px; }
+  .buy-rent-outcomes { gap: 12px; }
+  .buy-rent-outcome { padding: 20px 16px; }
+  .buy-rent-net-worth { font-size: 25px; }
+}
+@media(max-width:850px) {
+  .buy-rent-grid { grid-template-columns: 270px minmax(0,1fr); gap: 16px; }
+  .buy-rent-outcomes { grid-template-columns: 1fr; }
+  .buy-rent-outcome dl { grid-template-columns: 1fr 1fr; gap: 15px; }
+}
+@media(max-width:620px) {
+  .header-inner nav { gap: 4px; }
+  .header-inner nav button { font-size: 10px; }
+  .buy-rent-intro h1 em { display: block; }
+  .buy-rent-grid { display: block; }
+  .buy-rent-controls { margin-bottom: 25px; }
+  .buy-rent-result-heading { padding-left: 3px; }
+  .buy-rent-result-heading h2 { font-size: 22px; }
+  .buy-rent-outcome { padding: 23px; }
+  .buy-rent-net-worth { font-size: 33px; }
+  .buy-rent-outcome dl { grid-template-columns: 1fr; }
+  .buy-rent-outcome dl>div { flex-direction: row; justify-content: space-between; align-items: start; gap: 14px; }
+  .buy-rent-outcome dt { max-width: 60%; }
+  .buy-rent-outcome dd { text-align: right; font-size: 12px; }
+  .buy-rent-lead { padding: 20px; }
+  .buy-rent-lead strong { font-size: 18px; }
+  .buy-rent-chart .chart-key { font-size: 9px; }
+  .buy-rent-budget { padding: 21px; }
+  .buy-rent-monthly-budget strong { font-size: 15px; }
+  .buy-rent-table>.section-top { flex-direction: column; align-items: start; gap: 14px; }
+}
