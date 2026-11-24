@@ -5,6 +5,7 @@ import { LanguageProvider } from './components/language-provider';
 import './index.css';
 import './theme.css';
 import './buy-rent.css';
+import './management.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode><LanguageProvider><App /></LanguageProvider></StrictMode>,

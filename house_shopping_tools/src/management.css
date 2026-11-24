@@ -1,0 +1,97 @@
+:root { --management-muted: #566951; --management-monthly: #9b7446; }
+:root[data-theme=dark] { --management-muted: #becdb7; --management-monthly: #dfbd8d; }
+.header-inner nav { gap: 12px; }
+.header-inner nav button { font-size: 12px; }
+.management-intro p { font-size: 1rem; max-width: 780px; }
+.management-page { font-size: 1rem; margin-bottom: 36px; }
+.management-page h2 { font-size: 1.125rem; line-height: 1.6; }
+.management-page h3 { font-size: 1rem; line-height: 1.6; }
+.management-page p { font-size: 1rem; line-height: 1.8; }
+.management-grid { display: grid; grid-template-columns: 340px minmax(0,1fr); gap: 24px; align-items: start; }
+.management-controls { padding: 24px; }
+.management-controls>h2 { display: flex; align-items: center; gap: 9px; margin-bottom: 22px; }
+.management-controls>h3 { margin: 25px 0 18px; padding-top: 22px; border-top: 1px solid var(--line); }
+.management-page .field-label { min-height: 30px; }
+.management-page .field label { font-size: .875rem; line-height: 1.6; }
+.management-page .input-shell { height: 46px; }
+.management-page .input-shell input { font-size: 1rem; }
+.management-page :is(.prefix,.suffix) { font-size: .875rem; }
+.management-presets { display: flex; gap: 7px; }
+.management-presets button { flex: 1; border: 1px solid var(--line); border-radius: 6px; padding: 9px 4px; font-size: .875rem; }
+.management-presets [aria-pressed=true] { background: #eaf2e1; border-color: #9eb78b; color: #375e32; }
+.management-share { width: 100%; margin-top: 24px; }
+.management-page .outline-btn { font-size: .875rem; white-space: normal; }
+.management-page .management-note { color: var(--management-muted); font-size: .875rem; line-height: 1.8; margin: 18px 0 0; }
+.management-results { min-width: 0; scroll-margin-top: 18px; }
+.management-contract { display: flex; flex-wrap: wrap; gap: 22px 28px; padding: 22px; margin-bottom: 20px; }
+.management-contract>div { display: flex; flex: 1; flex-direction: column; gap: 9px; min-width: 150px; }
+.management-contract span { color: var(--management-muted); font-size: .875rem; line-height: 1.7; display: flex; align-items: center; gap: 4px; }
+.management-contract strong { font-size: 1rem; font-weight: 550; }
+.management-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.management-result { padding: 24px; min-width: 0; }
+.management-result>span { display: block; font-size: .875rem; color: var(--management-muted); margin-top: 23px; }
+.management-result>strong { display: block; font-size: clamp(1.5rem,2.3vw,2rem); font-weight: 500; line-height: 1.5; margin: 12px 0; overflow-wrap: anywhere; }
+.management-new { border-top: 3px solid var(--chart-main); }
+.management-result .management-relative { color: var(--management-muted); font-size: .875rem; min-height: 44px; }
+.management-result dl { display: grid; gap: 18px; margin: 18px 0 0; padding-top: 20px; border-top: 1px solid var(--line); }
+.management-result dl>div { display: flex; flex-direction: column; gap: 8px; }
+.management-page dt { color: var(--management-muted); font-size: .875rem; line-height: 1.6; }
+.management-page dd { margin: 0; font-size: 1rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.management-result .management-status { color: var(--management-muted); font-size: .875rem; }
+.management-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 18px 0 22px; }
+.management-metrics>div { padding: 21px; display: flex; flex-direction: column; gap: 12px; }
+.management-metrics span { color: var(--management-muted); font-size: .875rem; line-height: 1.7; }
+.management-metrics strong { font-size: 1.3rem; font-weight: 500; }
+.management-chart { padding: 23px; margin-top: 22px; }
+.management-chart>p { font-size: .875rem; color: var(--management-muted); margin-top: 12px; }
+.management-chart-key { display: flex; flex-wrap: wrap; gap: 12px 20px; margin: 20px 0; font-size: .875rem; color: var(--management-muted); }
+.management-chart-key>span { display: flex; align-items: center; gap: 8px; }
+.management-chart-key i { width: 8px; height: 8px; border-radius: 50%; }
+.management-chart svg { width: 100%; height: auto; display: block; }
+.management-chart text { font-family: var(--font); fill: var(--management-muted); font-size: 14px; }
+.management-empty { padding: 30px; display: flex; align-items: center; flex-direction: column; gap: 20px; min-height: 400px; text-align: center; }
+.management-empty p { color: var(--management-muted); }
+.management-paths { margin: 32px 0 26px; }
+.management-paths>p { color: var(--management-muted); margin-top: 12px; }
+.management-path-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; margin-top: 22px; }
+.management-path { padding: 22px; min-width: 0; }
+.management-path>strong { display: block; margin: 18px 0; font-size: 1.25rem; line-height: 1.6; font-weight: 500; }
+.management-path dl { margin: 0; display: grid; gap: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+.management-path dl>div { display: flex; flex-direction: column; gap: 8px; }
+.management-path-selected { border-color: #9eb78b; }
+.management-table { padding: 24px 24px 0; overflow: hidden; margin-bottom: 24px; }
+.management-table-heading { display: flex; align-items: start; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+.management-table-heading p { color: var(--management-muted); font-size: .875rem; margin-top: 12px; }
+.management-page :is(td,th) { font-size: .875rem; padding: 15px 12px; }
+.management-table .pagination { font-size: .875rem; }
+.management-table .pagination button { padding: 10px; border: 1px solid var(--line); border-radius: 6px; font-size: .875rem; }
+.management-methods { padding: 24px; }
+.management-methods p { color: var(--management-muted); margin-top: 14px; }
+.management-methods a { display: inline-block; color: var(--forest); margin-top: 18px; font-size: .875rem; text-decoration: underline; text-underline-offset: 4px; }
+.management-page .mobile-estimate span { font-size: .875rem; }
+.management-page .mobile-estimate strong { font-size: 1.25rem; }
+.management-page .mobile-estimate>button { font-size: .875rem; }
+:root[data-theme=dark] .management-presets [aria-pressed=true] { background: #2d432b; border-color: #8fac70; color: #d0e7b8; }
+@media(max-width:1200px) {
+  .site-header { height: auto; }
+  .header-inner { flex-wrap: wrap; padding-top: 15px; gap: 12px; }
+  .header-actions { margin-left: auto; }
+  .header-inner nav { order: 2; width: 100%; height: 52px; overflow-x: auto; justify-content: flex-start; gap: 20px; scrollbar-width: thin; }
+  .header-inner nav button { flex: 0 0 auto; font-size: 13px; white-space: nowrap; }
+  .management-grid { grid-template-columns: 310px minmax(0,1fr); gap: 18px; }
+  .management-summary { grid-template-columns: 1fr; }
+  .management-result dl { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+  .management-result .management-relative { min-height: 0; }
+  .management-path-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:720px) {
+  .management-grid { grid-template-columns: 1fr; }
+  .management-controls { margin-bottom: 4px; }
+  .management-result dl { grid-template-columns: 1fr; }
+  .management-path-grid { grid-template-columns: 1fr; }
+  .management-table-heading { flex-direction: column; }
+  .management-intro h1 em { display: block; }
+  .management-intro p { font-size: 1rem!important; }
+  .management-chart { padding: 20px 14px; }
+  .management-result>strong { font-size: 1.75rem; }
+}
