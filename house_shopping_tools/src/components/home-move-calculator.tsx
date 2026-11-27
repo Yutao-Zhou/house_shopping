@@ -3,6 +3,8 @@ import { calculateMoveSettings, moveDefaults, moveLimits, moveMaxAmount, type Mo
 import { useLanguage } from './language-provider';
 import { Field } from './field';
 import { InfoPopover } from './info-popover';
+import { HousingCostInputs } from './annual-housing-cost-input';
+import { restoreCostModes } from '@/lib/annual-housing-cost';
 
 const STORAGE_KEY = 'nestwise-home-move-v1';
 const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
@@ -14,8 +16,9 @@ function restoreSettings(): MoveSettings {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? 'null');
     if (saved && typeof saved === 'object') {
       for (const key of Object.keys(values) as (keyof MoveSettings)[]) {
-        if (typeof saved[key] === 'string') values[key] = saved[key];
+        if (typeof saved[key] === 'string') Object.assign(values, { [key]: saved[key] });
       }
+      Object.assign(values, restoreCostModes(saved));
     }
   } catch { /* Storage is optional. */ }
   if (values.downMode !== 'available') values.downMode = 'target';
@@ -27,6 +30,7 @@ const errors: Record<string, string> = {
   price: '旧房售价和新房价格都至少为 $0.01。',
   term: '贷款期限为 1–50 个整年，重叠持有为 0–36 个整月。',
   amount: '请检查各项金额及百分比是否在输入范围内。',
+  housingCosts: '请检查房价及房产税、房屋保险的金额或比例。',
 };
 
 export function HomeMoveCalculator() {
@@ -99,8 +103,11 @@ export function HomeMoveCalculator() {
           <div className="move-field-pair">
             {field('annualRate', '固定年利率', { suffix: '%' })}
             {field('years', '贷款期限', { suffix: t('年'), min: 1, integer: true })}
-            {field('annualTax', '房产税 / 年')}
-            {field('annualInsurance', '房屋保险 / 年')}
+            <HousingCostInputs prefix="move" price={values.buyPrice} max={moveMaxAmount}
+              values={{ ...values, tax: values.annualTax, insurance: values.annualInsurance }}
+              onChange={({ tax, insurance, ...modes }) => {
+                setValues(current => ({ ...current, ...modes, annualTax: tax, annualInsurance: insurance }));
+              }} />
             {field('monthlyHoa', 'HOA / 月')}
             {field('monthlyPmi', 'PMI / 月')}
           </div>

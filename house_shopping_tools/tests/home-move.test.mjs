@@ -39,12 +39,19 @@ test('negative sale proceeds reduce funds and identify cash needed even at zero 
 });
 
 test('large proceeds fund a cash purchase and preserve excess cash', () => {
-  const r = calculateMoveSettings({ ...moveDefaults, downMode: 'available', buyPrice: '200000', monthlyPmi: '100' });
+  const r = calculateMoveSettings({ ...moveDefaults, downMode: 'available', buyPrice: '200000', monthlyPmi: '100', taxMode: 'fixed', insuranceMode: 'fixed' });
   assert.equal(r.downPayment, 200_000);
   assert.equal(r.principal, 0);
   assert.equal(r.payment, 0);
   assert.equal(r.cashAfterMove, 169_500);
   assert.equal(r.monthlyHousing, (14_300 + 2_400) / 12);
+});
+
+test('new home price reprices linked tax and insurance without using the old sale price', () => {
+  const r = calculateMoveSettings({ ...moveDefaults, buyPrice: '2600000', salePrice: '1040000' });
+  assert.ok(Math.abs(r.monthlyHousing - r.payment - (28_600 + 4_800) / 12) < 1e-8);
+  const mixed = calculateMoveSettings({ ...moveDefaults, buyPrice: '2600000', insuranceMode: 'fixed' });
+  assert.ok(Math.abs(mixed.monthlyHousing - mixed.payment - (28_600 + 2_400) / 12) < 1e-8);
 });
 
 test('invalid amounts, terms and overlap are rejected', () => {

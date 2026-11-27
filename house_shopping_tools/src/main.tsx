@@ -7,6 +7,7 @@ import './theme.css';
 import './buy-rent.css';
 import './management.css';
 import './home-move.css';
+import './annual-housing-cost.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode><LanguageProvider><App /></LanguageProvider></StrictMode>,

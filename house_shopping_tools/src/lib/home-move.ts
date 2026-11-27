@@ -1,4 +1,5 @@
 import { monthlyPayment } from './mortgage.ts';
+import { costModeDefaults, resolveHousingCosts, type CostModes } from './annual-housing-cost.ts';
 
 export const moveDefaults = {
   salePrice: '1000000',
@@ -20,12 +21,14 @@ export const moveDefaults = {
   years: '30',
   annualTax: '14300',
   annualInsurance: '2400',
+  ...costModeDefaults,
+  insuranceRate: '0.184615384615385',
   monthlyHoa: '0',
   monthlyPmi: '0',
 };
 
 export type MoveSettings = typeof moveDefaults;
-export type MoveAmount = Exclude<keyof MoveSettings, 'downMode'>;
+export type MoveAmount = Exclude<keyof MoveSettings, 'downMode' | keyof CostModes>;
 type MoveInput = Record<MoveAmount, number> & { downMode: 'target' | 'available' };
 
 export const moveLimits: Partial<Record<MoveAmount, number>> = {
@@ -78,12 +81,19 @@ export function calculateHomeMove(input: MoveInput) {
 }
 
 export function calculateMoveSettings(settings: MoveSettings) {
-  const { downMode, ...amounts } = settings;
+  const { downMode, taxMode, taxRate, insuranceMode, insuranceRate, annualTax, annualInsurance, ...amounts } = settings;
+  const housing = resolveHousingCosts(settings.buyPrice, {
+    tax: annualTax, taxMode, taxRate,
+    insurance: annualInsurance, insuranceMode, insuranceRate,
+  }, moveMaxAmount);
+  if (!housing) throw new Error('housingCosts');
   if (downMode === 'available') amounts.downPercent = '0';
   const numbers = Object.entries(amounts).map(([key, raw]) => {
     if (!raw.trim()) throw new Error('blank');
     return [key, Number(raw)];
   });
   if (downMode !== 'target' && downMode !== 'available') throw new Error('amount');
-  return calculateHomeMove({ ...Object.fromEntries(numbers), downMode } as MoveInput);
+  return calculateHomeMove({
+    ...Object.fromEntries(numbers), downMode, annualTax: housing.tax, annualInsurance: housing.insurance,
+  } as MoveInput);
 }

@@ -1,0 +1,21 @@
+.annual-cost {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.annual-cost .field,
+.annual-cost .field:last-child { margin: 0; }
+.annual-cost .field .field-label { min-height: 24px; }
+.annual-cost .field label { font-size: .875rem; }
+.annual-cost-mode { justify-self: start; }
+.annual-cost-mode button { font-size: .8125rem; padding: 6px 10px; }
+.annual-cost .annual-cost-estimate {
+  margin: 1px 0 6px;
+  color: var(--move-muted, #566951);
+  font-size: .8125rem;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+}
+.annual-cost-reference { grid-column: 1 / -1; }

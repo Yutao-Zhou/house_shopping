@@ -29,7 +29,7 @@ export const buyRentTranslations: Record<string, string> = {
   '维护费用 / 年': 'Annual maintenance',
   '按每月期初房屋估值乘以此年比例，再除以 12 估算维修维护现金支出；不计入房屋增值。': 'Estimated monthly maintenance is this annual percentage of the home value at the start of that month, divided by 12. It does not add to the home value.',
   '持有费用年涨幅': 'Annual running-cost growth',
-  '房产税、房屋保险、HOA 和租客保险在每个周年按此比例调整；PMI 保持输入的月费直到贷款结清。': 'Property tax, home insurance, HOA and renters insurance grow by this rate at each annual anniversary. PMI keeps its entered monthly amount until the mortgage is paid off.',
+  '房产税和房屋保险从所选比例或固定金额起算。之后与 HOA、租客保险一起按此比例逐年调整。PMI 保持输入的月费直到贷款结清。': 'Tax and home insurance start from the chosen percentage or fixed amount. Those amounts, HOA and renters insurance grow by this rate annually. PMI stays at the entered amount until payoff.',
   '租客保险 / 月': 'Renters insurance / month',
   '所有费用都按本页输入计入，不受房贷计算页税费开关影响。': 'This comparison includes all cost inputs shown here, independently of the mortgage calculator’s cost toggle.',
   '共享房价、首付及贷款参数；此页不叠加 Recast 或 Refinance。': 'Purchase price, down payment and mortgage inputs are shared with the calculator. Recast and refinance events are not combined here.',

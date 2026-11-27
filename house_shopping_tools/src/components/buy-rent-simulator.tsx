@@ -4,6 +4,8 @@ import { simulateBuyRent, type BuyRentResult } from '@/lib/buy-rent';
 import { formatMonth } from '@/lib/i18n';
 import { useLanguage } from './language-provider';
 import { Field } from './field';
+import { HousingCostInputs } from './annual-housing-cost-input';
+import { resolveHousingCosts, type HousingCostSettings } from '@/lib/annual-housing-cost';
 import { InfoPopover } from './info-popover';
 import '../recast.css';
 
@@ -12,9 +14,9 @@ export type BuyRentSettings = {
   buyRentRentGrowth: string; buyRentCostGrowth: string; buyRentMaintenance: string; buyRentBuyCosts: string;
   buyRentSellCosts: string; buyRentYears: string;
 };
-type Purchase = { price: string; down: string; rate: string; years: string; extra: string; tax: string; insurance: string; hoa: string; pmi: string; start: string };
+type Purchase = HousingCostSettings & { price: string; down: string; rate: string; years: string; extra: string; hoa: string; pmi: string; start: string };
 type Values = BuyRentSettings & Purchase;
-type Props = { values: Values; onChange: (key: keyof Values, value: string) => void; onShare: () => void; onNotice: (message: string) => void };
+type Props = { values: Values; onChange: (key: keyof Values, value: string) => void; onHousingCostChange: (values: HousingCostSettings) => void; onShare: () => void; onNotice: (message: string) => void };
 const money = (value: number, digits = 0) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: digits, maximumFractionDigits: digits }).format(Math.abs(value) < 1e-7 ? 0 : value);
 const signed = (value: number) => `${value > 1e-7 ? '+' : ''}${money(value)}`;
 
@@ -43,15 +45,17 @@ function WealthChart({ data }: { data: BuyRentResult }) {
   </section>;
 }
 
-export function BuyRentSimulator({ values, onChange, onShare, onNotice }: Props) {
+export function BuyRentSimulator({ values, onChange, onHousingCostChange, onShare, onNotice }: Props) {
   const { language, t } = useLanguage();
   const [page, setPage] = useState(0);
   const calculation = useMemo(() => {
-    const keys: (keyof Values)[] = ['price', 'down', 'rate', 'years', 'extra', 'tax', 'insurance', 'hoa', 'pmi', 'buyRentRent', 'buyRentRenterInsurance', 'buyRentReturn', 'buyRentHomeGrowth', 'buyRentRentGrowth', 'buyRentCostGrowth', 'buyRentMaintenance', 'buyRentBuyCosts', 'buyRentSellCosts', 'buyRentYears'];
+    const keys: (keyof Values)[] = ['price', 'down', 'rate', 'years', 'extra', 'hoa', 'pmi', 'buyRentRent', 'buyRentRenterInsurance', 'buyRentReturn', 'buyRentHomeGrowth', 'buyRentRentGrowth', 'buyRentCostGrowth', 'buyRentMaintenance', 'buyRentBuyCosts', 'buyRentSellCosts', 'buyRentYears'];
     if (keys.some(key => !values[key].trim())) return { data: null, error: t('请填写完整有效的购房、租房及投资参数。') };
     if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(values.start) || Number(values.start.slice(0, 4)) < 1900 || Number(values.start.slice(0, 4)) > 2200) return { data: null, error: t('请选择 1900–2200 年之间的首次还款月份。') };
+    const housing = resolveHousingCosts(values.price, values);
+    if (!housing) return { data: null, error: t('请检查房价及房产税、房屋保险的金额或比例。') };
     try {
-      return { data: simulateBuyRent({ price: Number(values.price), downPercent: Number(values.down), annualRate: Number(values.rate), loanYears: Number(values.years), extra: Number(values.extra), annualTax: Number(values.tax), annualInsurance: Number(values.insurance), monthlyHoa: Number(values.hoa), monthlyPmi: Number(values.pmi), monthlyRent: Number(values.buyRentRent), monthlyRenterInsurance: Number(values.buyRentRenterInsurance), rentGrowth: Number(values.buyRentRentGrowth), homeGrowth: Number(values.buyRentHomeGrowth), investmentReturn: Number(values.buyRentReturn), costGrowth: Number(values.buyRentCostGrowth), maintenancePercent: Number(values.buyRentMaintenance), purchaseCostPercent: Number(values.buyRentBuyCosts), sellingCostPercent: Number(values.buyRentSellCosts), years: Number(values.buyRentYears) }), error: '' };
+      return { data: simulateBuyRent({ price: Number(values.price), downPercent: Number(values.down), annualRate: Number(values.rate), loanYears: Number(values.years), extra: Number(values.extra), annualTax: housing.tax, annualInsurance: housing.insurance, monthlyHoa: Number(values.hoa), monthlyPmi: Number(values.pmi), monthlyRent: Number(values.buyRentRent), monthlyRenterInsurance: Number(values.buyRentRenterInsurance), rentGrowth: Number(values.buyRentRentGrowth), homeGrowth: Number(values.buyRentHomeGrowth), investmentReturn: Number(values.buyRentReturn), costGrowth: Number(values.buyRentCostGrowth), maintenancePercent: Number(values.buyRentMaintenance), purchaseCostPercent: Number(values.buyRentBuyCosts), sellingCostPercent: Number(values.buyRentSellCosts), years: Number(values.buyRentYears) }), error: '' };
     } catch (error) {
       const messages: Record<string, string> = {
         invalid_buy_rent_purchase: '房价需为 0–100,000,000 之间的正数，首付 0–100%，贷款利率 0–30%，贷款期限为 1–50 的整数年。',
@@ -86,8 +90,8 @@ export function BuyRentSimulator({ values, onChange, onShare, onNotice }: Props)
     <details className="buy-rent-advanced"><summary>{t('持有及交易费用')}<ChevronDown size={16} /></summary><div className="buy-rent-advanced-fields">
       <div className="field-pair"><Field label={t('买入费用比例')} name="buy-rent-buy-costs" value={values.buyRentBuyCosts} suffix="%" max={20} onChange={value => onChange('buyRentBuyCosts', value)} help={t('房价的百分比，在买入时现金支付；租房方把这笔费用和首付一起投入投资账户。不包含首付或重复计算托管存款。')} /><Field label={t('卖出费用比例')} name="buy-rent-sell-costs" value={values.buyRentSellCosts} suffix="%" max={20} onChange={value => onChange('buyRentSellCosts', value)} help={t('预计房屋出售价格的百分比。各年买房净值都假设当年末卖房，并扣除这项费用及剩余贷款；不会每年实际卖房。')} /></div>
       <Field label={t('维护费用 / 年')} name="buy-rent-maintenance" value={values.buyRentMaintenance} suffix="%" max={20} onChange={value => onChange('buyRentMaintenance', value)} help={t('按每月期初房屋估值乘以此年比例，再除以 12 估算维修维护现金支出；不计入房屋增值。')} />
-      <div className="field-pair"><Field label={t('房产税 / 年')} name="buy-rent-tax" value={values.tax} prefix="$" onChange={value => onChange('tax', value)} /><Field label={t('房屋保险 / 年')} name="buy-rent-insurance" value={values.insurance} prefix="$" onChange={value => onChange('insurance', value)} /><Field label={t('HOA / 月')} name="buy-rent-hoa" value={values.hoa} prefix="$" onChange={value => onChange('hoa', value)} /><Field label={t('PMI / 月')} name="buy-rent-pmi" value={values.pmi} prefix="$" onChange={value => onChange('pmi', value)} /></div>
-      <Field label={t('持有费用年涨幅')} name="buy-rent-cost-growth" value={values.buyRentCostGrowth} suffix="%" min={-20} max={20} onChange={value => onChange('buyRentCostGrowth', value)} help={t('房产税、房屋保险、HOA 和租客保险在每个周年按此比例调整；PMI 保持输入的月费直到贷款结清。')} />
+      <div className="field-pair"><HousingCostInputs prefix="buy-rent" price={values.price} values={values} onChange={onHousingCostChange} /><Field label={t('HOA / 月')} name="buy-rent-hoa" value={values.hoa} prefix="$" onChange={value => onChange('hoa', value)} /><Field label={t('PMI / 月')} name="buy-rent-pmi" value={values.pmi} prefix="$" onChange={value => onChange('pmi', value)} /></div>
+      <Field label={t('持有费用年涨幅')} name="buy-rent-cost-growth" value={values.buyRentCostGrowth} suffix="%" min={-20} max={20} onChange={value => onChange('buyRentCostGrowth', value)} help={t('房产税和房屋保险从所选比例或固定金额起算。之后与 HOA、租客保险一起按此比例逐年调整。PMI 保持输入的月费直到贷款结清。')} />
       <Field label={t('租客保险 / 月')} name="buy-rent-renter-insurance" value={values.buyRentRenterInsurance} prefix="$" onChange={value => onChange('buyRentRenterInsurance', value)} />
       <Field label={t('每月额外偿还本金')} name="buy-rent-extra" value={values.extra} prefix="$" onChange={value => onChange('extra', value)} />
       <Field label={t('首次还款月份')} type="month" name="buy-rent-start" value={values.start} onChange={value => onChange('start', value)} />
