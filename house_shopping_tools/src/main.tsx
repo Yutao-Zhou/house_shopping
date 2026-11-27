@@ -6,6 +6,7 @@ import './index.css';
 import './theme.css';
 import './buy-rent.css';
 import './management.css';
+import './home-move.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode><LanguageProvider><App /></LanguageProvider></StrictMode>,
