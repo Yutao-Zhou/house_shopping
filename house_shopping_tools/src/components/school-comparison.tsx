@@ -3,6 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import { calculateSchoolComparison, schoolDefaults, schoolFields, type SchoolComparison, type SchoolField, type SchoolSettings } from '@/lib/school-comparison';
 import { restoreCostModes } from '@/lib/annual-housing-cost';
 import { Field } from './field';
+import { ResultJump, ScrollTable } from './calculator-controls';
 import { HousingCostInputs } from './annual-housing-cost-input';
 import { InfoPopover } from './info-popover';
 import { useLanguage } from './language-provider';
@@ -24,6 +25,9 @@ const labels: Record<SchoolField, string> = {
   holdingGrowth: '持有支出年涨幅', investmentReturn: '投资年回报假设', exitRate: '期末卖房费用比例',
 };
 const paths = ['留现住房 · 私校', '换学区房 · 公校'] as const;
+const schoolIncrements: Partial<Record<SchoolField, number>> = {
+  tuition: 500, currentPrice: 10000, districtPrice: 10000, currentBalance: 1000, savings: 1000,
+};
 
 function restoreSettings(): SchoolSettings {
   const values = { ...schoolDefaults };
@@ -108,6 +112,7 @@ export function SchoolComparisonCalculator() {
     return <Field name={`school-${key}`} label={t(labels[key])} value={values[key]}
       prefix={suffix === '$' ? '$' : undefined} suffix={suffix === '$' ? undefined : suffix}
       min={min} max={max} step={whole ? '1' : undefined} help={help && t(help)}
+      increment={schoolIncrements[key]}
       onChange={value => setValues(current => ({ ...current, [key]: value }))} />;
   }
   function ownership(key: 'currentCosts' | 'districtCosts', price: string, other: 'currentOther' | 'districtOther') {
@@ -180,15 +185,13 @@ export function SchoolComparisonCalculator() {
           </details>
         </section>
       </aside>
-      <div className="school-results" id="school-results">
+      <div className="school-results" id="school-results" tabIndex={-1} data-result-target role="region" aria-label={t('两条路径的期末净值')}>
         {data ? <SchoolResults data={data} /> : <section className="card"><p role="alert">{errorMessage}</p></section>}
       </div>
     </div>
     {data && <AnnualComparison data={data} />}
-    <div className="mobile-estimate school-mobile">
-      <div><span>{t(data ? '换房路径首月支出' : '先检查输入范围。')}</span><strong>{data && monthDollars(data.firstMonth.districtHousing + data.firstMonth.publicSchool)}</strong></div>
-      <button type="button" onClick={() => document.getElementById('school-results')?.scrollIntoView({ block: 'start' })}>{t('查看结果')}</button>
-    </div>
+    <ResultJump target="school-results" label={t(data ? '换房路径首月支出' : '先检查输入范围。')}
+      value={data ? monthDollars(data.firstMonth.districtHousing + data.firstMonth.publicSchool) : undefined} />
   </section>;
 }
 
@@ -267,7 +270,7 @@ function AnnualComparison({ data }: { data: SchoolComparison }) {
   return <section className="card school-annual">
     <h2>{t('逐年现金流与净值')}</h2>
     <p>{t('当年支出含住房和学校费用，换房时的一次性现金在上方单列。')}</p>
-    <div className="table-scroll" tabIndex={0} role="region" aria-label={t('逐年现金流与净值')}>
+    <ScrollTable label={t('逐年现金流与净值')}>
       <table><caption className="sr-only">{t('逐年现金流与净值')}</caption>
         <thead><tr>{['比较年份', '私校费用', '私校路径当年支出', '换房路径当年支出', '当年多花（换房减私校）', '私校路径净值', '换房路径净值'].map(label => <th scope="col" key={label}>{t(label)}</th>)}</tr></thead>
         <tbody>{data.yearly.slice(1).map(row => <tr key={row.year}>
@@ -276,6 +279,6 @@ function AnnualComparison({ data }: { data: SchoolComparison }) {
           <td>{dollars(row.districtOutflow - row.privateOutflow)}</td><td>{dollars(row.private.netWorth)}</td><td>{dollars(row.district.netWorth)}</td>
         </tr>)}</tbody>
       </table>
-    </div>
+    </ScrollTable>
   </section>;
 }

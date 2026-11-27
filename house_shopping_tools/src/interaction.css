@@ -1,0 +1,53 @@
+.input-shell.number-shell { min-height: 44px; }
+.number-stepper {
+  display: grid;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  align-self: stretch;
+  flex: 0 0 34px;
+  border-inline-start: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--forest);
+}
+.number-stepper button { display: grid; place-items: center; padding: 0; }
+.number-stepper button + button { border-top: 1px solid var(--line); }
+.number-stepper button:not(:disabled):is(:hover, :active) { background: var(--move-result); }
+.number-stepper button:focus-visible { outline-offset: -3px; }
+.input-shell.number-shell-invalid { border-color: #ad4b38; box-shadow: 0 0 0 2px #ad4b3818; }
+.field p.field-validation {
+  margin: 5px 0 0;
+  font-size: .8125rem;
+  line-height: 1.4;
+  color: #a3392d;
+}
+:root[data-theme=dark] .input-shell.number-shell-invalid { border-color: #ec9b8b; }
+:root[data-theme=dark] .field p.field-validation { color: #ffb6a6; }
+.number-shell .suffix { flex-shrink: 0; padding-inline: 5px; }
+.number-shell input { padding-inline-end: 5px; }
+
+.table-scroll:focus-visible { outline: 2px solid var(--move-accent); outline-offset: 3px; }
+.calculator-pagination .icon-btn { width: 36px; height: 36px; }
+.calculator-pagination .icon-btn[aria-disabled=true] { opacity: .4; cursor: default; }
+[data-result-target] { scroll-margin-block-start: 16px; }
+[data-result-target]:focus:not(:focus-visible) { outline: none; }
+
+.chart-year-picker { display: grid; gap: 4px; margin-top: 12px; }
+.chart-year-picker label { color: var(--move-muted); font-size: .875rem; }
+.chart-year-picker input { width: 100%; accent-color: var(--move-accent); }
+.chart-year-picker p { min-height: 1.5em; font-size: .875rem; color: var(--move-muted); }
+.info-popover p { max-height: 50dvh; overflow-y: auto; overflow-wrap: anywhere; }
+.modal { max-height: calc(100dvh - 40px); overflow: auto; }
+
+@media (pointer: coarse), (max-width: 720px) {
+  .input-shell.number-shell { min-height: 50px; }
+  .number-stepper { flex-basis: 37px; }
+  .input-shell.number-shell input { font-size: 16px; }
+  .mobile-estimate { gap: 12px; }
+  .mobile-estimate > div { min-width: 0; }
+  .mobile-estimate strong { overflow-wrap: anywhere; }
+  .mobile-estimate > button { flex-shrink: 0; min-height: 44px; }
+  .calculator-pagination .icon-btn { width: 42px; height: 42px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

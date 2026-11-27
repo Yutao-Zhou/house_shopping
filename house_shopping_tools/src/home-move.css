@@ -57,8 +57,6 @@
 .move-breakdown>div:last-child>dd { font-weight: 650; }
 .move-timing h2 { display: flex; align-items: center; gap: 6px; }
 .move-assumptions a { display: inline-block; margin-top: 14px; color: var(--move-accent); text-decoration: underline; text-underline-offset: 4px; }
-.move-mobile span { font-size: .8125rem; }
-.move-mobile strong { font-size: 1.125rem; }
 
 @media (max-width: 1280px) {
   .site-header { height: auto; }

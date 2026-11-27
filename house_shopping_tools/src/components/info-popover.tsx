@@ -66,22 +66,31 @@ export function InfoPopover({ label, description }: { label: string; description
       if (!trigger.current || !panel.current) return;
       const anchor = trigger.current.getBoundingClientRect();
       const width = document.documentElement.clientWidth;
+      const viewport = window.visualViewport;
+      const upper = viewport?.offsetTop ?? 0;
+      const lower = upper + (viewport?.height ?? window.innerHeight);
+      if (anchor.bottom < upper || anchor.top > lower) {
+        dismiss();
+        return;
+      }
       panel.current.style.width = `${Math.min(310, width - 24)}px`;
+      panel.current.style.maxHeight = `${lower - upper - 24}px`;
       const box = panel.current.getBoundingClientRect();
-      const height = window.innerHeight;
       const left = Math.max(12, Math.min(anchor.left + anchor.width / 2 - box.width / 2, width - box.width - 12));
-      const above = anchor.bottom + box.height + 8 > height - 12 && anchor.top - box.height - 8 >= 12;
-      const top = Math.max(12, Math.min(above ? anchor.top - box.height - 8 : anchor.bottom + 8, height - box.height - 12));
+      const above = anchor.bottom + box.height + 8 > lower - 12 && anchor.top - box.height - 8 >= upper + 12;
+      const top = Math.max(upper + 12, Math.min(above ? anchor.top - box.height - 8 : anchor.bottom + 8, lower - box.height - 12));
       setPosition({ left, top, side: above ? 'top' : 'bottom', ready: true, arrow: Math.max(14, Math.min(anchor.left + anchor.width / 2 - left, box.width - 14)) });
     };
     place();
     window.addEventListener('resize', place);
     window.addEventListener('scroll', place, true);
+    window.visualViewport?.addEventListener('resize', place);
     return () => {
       window.removeEventListener('resize', place);
       window.removeEventListener('scroll', place, true);
+      window.visualViewport?.removeEventListener('resize', place);
     };
-  }, [open, label, description]);
+  }, [open, label, description, dismiss]);
 
   return <>
     <button

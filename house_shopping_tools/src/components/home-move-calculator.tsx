@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { calculateMoveSettings, moveDefaults, moveLimits, moveMaxAmount, type MoveAmount, type MoveSettings } from '@/lib/home-move';
 import { useLanguage } from './language-provider';
 import { Field } from './field';
+import { ResultJump } from './calculator-controls';
 import { InfoPopover } from './info-popover';
 import { HousingCostInputs } from './annual-housing-cost-input';
 import { restoreCostModes } from '@/lib/annual-housing-cost';
@@ -45,6 +46,7 @@ export function HomeMoveCalculator() {
   };
   function field(key: MoveAmount, label: string, options: { suffix?: string; help?: string; integer?: boolean; min?: number } = {}) {
     return <Field name={`move-${key}`} value={values[key]} label={t(label)}
+      increment={key === 'salePrice' || key === 'buyPrice' ? 10000 : key === 'payoff' ? 1000 : undefined}
       prefix={options.suffix ? undefined : '$'} suffix={options.suffix}
       min={options.min} max={moveLimits[key] ?? moveMaxAmount} step={options.integer ? '1' : undefined}
       help={options.help ? t(options.help) : undefined} onChange={value => update(key, value)} />;
@@ -113,7 +115,7 @@ export function HomeMoveCalculator() {
           </div>
         </section>
       </div>
-      <div className="move-results" id="move-results">
+      <div className="move-results" id="move-results" tabIndex={-1} data-result-target role="region" aria-label={t('预计新贷款')}>
         {!result ? <section className="card move-assumptions"><p role="alert">{error}</p></section> : <>
           <section className="card move-loan" aria-live="polite">
             <h2>{t('预计新贷款')}</h2>
@@ -180,9 +182,6 @@ export function HomeMoveCalculator() {
         </section>
       </div>
     </div>
-    {result && <div className="mobile-estimate move-mobile">
-      <div><span>{t('预计新贷款')}</span><strong>{money(result.principal)}</strong></div>
-      <button onClick={() => document.getElementById('move-results')?.scrollIntoView({ block: 'start' })}>{t('查看结果')}</button>
-    </div>}
+    {result && <ResultJump target="move-results" label={t('预计新贷款')} value={money(result.principal)} />}
   </section>;
 }

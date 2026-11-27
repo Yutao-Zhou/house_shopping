@@ -9,6 +9,7 @@ import './management.css';
 import './home-move.css';
 import './annual-housing-cost.css';
 import './school-comparison.css';
+import './interaction.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode><LanguageProvider><App /></LanguageProvider></StrictMode>,
