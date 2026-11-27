@@ -3,12 +3,14 @@ import { refinanceTranslations } from './refinance-copy.ts';
 import { buyRentTranslations } from './buy-rent-copy.ts';
 import { managementTranslations } from './management-copy.ts';
 import { homeMoveTranslations } from './home-move-copy.ts';
+import { schoolTranslations } from './school-copy.ts';
 export const translations: Record<string, string> = {
   ...recastTranslations,
   ...refinanceTranslations,
   ...buyRentTranslations,
   ...managementTranslations,
   ...homeMoveTranslations,
+  ...schoolTranslations,
   '按房价 %': '% of price',
   '固定金额': 'Fixed amount',
   '{0} 的估算方式': 'Estimate method for {0}',

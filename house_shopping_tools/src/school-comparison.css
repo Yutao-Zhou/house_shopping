@@ -1,0 +1,122 @@
+:root {
+  --school-stay: #365f83;
+  --school-stay-bg: #eef3f8;
+  --school-district: #315e3f;
+  --school-district-bg: #eff4e9;
+}
+
+:root[data-theme=dark] {
+  --school-stay: #acd3f1;
+  --school-stay-bg: #223546;
+  --school-district: #b7d7ac;
+  --school-district-bg: #233b2b;
+}
+
+@media (min-width: 1281px) {
+  .header-inner nav { gap: 17px; }
+  .header-inner nav button { white-space: nowrap; }
+}
+
+.school-intro p { font-size: 1rem; max-width: 720px; }
+.school-page { font-size: 1rem; line-height: 1.5; margin-bottom: 36px; }
+.school-grid {
+  display: grid;
+  grid-template-columns: minmax(290px, .78fr) minmax(0, 1.55fr);
+  align-items: start;
+  gap: 22px;
+}
+.school-controls, .school-results { display: grid; gap: 16px; min-width: 0; }
+.school-results { scroll-margin-top: 16px; }
+.school-page .card { padding: clamp(16px, 2.1vw, 25px); }
+.school-page h2 { font-size: 1.125rem; line-height: 1.4; }
+.school-page h3 { font-size: .9375rem; line-height: 1.4; }
+.school-page p { color: var(--move-muted); margin-top: 10px; }
+.school-input-card h2 { margin-bottom: 15px; }
+.school-page .school-example { margin: -6px 0 14px; font-size: .875rem; }
+.school-input-card .field { margin-bottom: 14px; }
+.school-input-card .field:last-child { margin-bottom: 0; }
+.school-input-card .field label { font-size: .875rem; }
+.school-input-card .input-shell { height: 43px; }
+.school-field-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 12px;
+  margin-bottom: 14px;
+}
+.school-field-pair .field { margin-bottom: 10px; }
+.school-field-pair .field-label { min-height: 38px; }
+.school-field-pair .field:nth-last-child(-n + 2) { margin-bottom: 0; }
+.school-disclosure { border-top: 1px solid var(--line); margin-top: 16px; }
+.school-disclosure summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 12px;
+  color: var(--move-accent);
+  font-size: .875rem;
+  cursor: pointer;
+  list-style: none;
+}
+.school-disclosure summary::-webkit-details-marker { display: none; }
+.school-disclosure[open] summary { margin-bottom: 12px; }
+.school-disclosure[open] summary svg { transform: rotate(180deg); }
+.school-wealth h2 { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; }
+.school-wealth h2 small { color: var(--move-muted); font-size: .875rem; font-weight: 500; }
+.school-outcomes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; margin-top: 16px; }
+.school-outcome { padding: clamp(12px, 1.6vw, 19px); border-radius: 9px; border-top: 3px solid currentColor; }
+.school-stay { color: var(--school-stay); background: var(--school-stay-bg); }
+.school-move { color: var(--school-district); background: var(--school-district-bg); }
+.school-outcome-value {
+  display: block;
+  font-size: clamp(1.3rem, 2.8vw, 2.2rem);
+  line-height: 1.2;
+  letter-spacing: -.035em;
+  margin: 10px 0 15px;
+  overflow-wrap: anywhere;
+}
+.school-ledger { display: grid; margin: 12px 0 0; gap: 7px; }
+.school-ledger > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 9px; }
+.school-ledger dt { font-size: .875rem; color: var(--move-muted); }
+.school-ledger dd { font-size: .875rem; text-align: right; margin: 0; color: var(--ink); }
+.school-ledger > div:last-child { padding-top: 8px; border-top: 1px solid var(--line); font-weight: 650; }
+.school-page .school-lead { color: var(--move-accent); font-weight: 650; margin-top: 15px; }
+.school-page .school-warning { color: var(--move-warning-ink); background: var(--move-warning-bg); padding: 10px 12px; border-radius: 6px; }
+.school-page td, .school-page dd, .school-page strong { font-variant-numeric: tabular-nums; }
+.school-page .school-small-table { width: 100%; margin-top: 12px; table-layout: fixed; border-collapse: collapse; }
+.school-small-table th, .school-small-table td { text-align: right; white-space: normal; padding: 9px 5px; line-height: 1.35; font-size: .875rem; }
+.school-small-table th:first-child { text-align: left; }
+.school-small-table tbody tr:last-child { font-weight: 650; }
+.school-cash-difference { font-weight: 650; }
+.school-chart-legend, .school-chart-values { display: flex; flex-wrap: wrap; gap: 8px 15px; align-items: baseline; margin: 12px 0; font-size: .875rem; }
+.school-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.school-chart-legend i { display: inline-block; width: 15px; border-top: 3px solid; }
+.school-chart-legend .school-stay-line { color: var(--school-stay); }
+.school-chart-legend .school-move-line { color: var(--school-district); border-top-style: dashed; }
+.school-chart svg { width: 100%; display: block; }
+.school-chart svg text { fill: var(--move-muted); font-size: 15px; }
+.school-chart-rule { stroke: var(--chart-grid); }
+.school-chart-marker { stroke: var(--chart-event); stroke-dasharray: 3 3; }
+.school-chart .school-stay-line { stroke: var(--school-stay); stroke-width: 3; }
+.school-chart .school-move-line { stroke: var(--school-district); stroke-width: 3; stroke-dasharray: 6 4; }
+.school-stay-point { fill: var(--school-stay); }
+.school-move-point { fill: var(--school-district); }
+.school-stay-value { color: var(--school-stay); }
+.school-move-value { color: var(--school-district); }
+.school-chart label { display: block; font-size: .875rem; margin-top: 12px; }
+.school-chart input { width: 100%; accent-color: var(--move-accent); }
+.school-chart-values { margin-bottom: 0; }
+.school-annual { margin-top: 20px; }
+.school-annual .table-scroll { margin-top: 13px; }
+.school-annual th, .school-annual td { font-size: .875rem; }
+.school-annual th[scope=row] { text-align: left; }
+
+@media (max-width: 900px) {
+  .school-grid { grid-template-columns: minmax(250px, .8fr) minmax(0, 1.25fr); gap: 14px; }
+  .school-outcomes { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .school-grid { grid-template-columns: minmax(0, 1fr); }
+  .school-small-table th, .school-small-table td { font-size: .8125rem; overflow-wrap: anywhere; }
+}
